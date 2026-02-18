@@ -1,0 +1,40 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Publishing
+
+Hardcoded Nexus credentials in `build.gradle` are intentional — used only for local development (`localhost:8081`). Production publishing is handled separately via CI/CD.
+
+## Build Commands
+
+```bash
+./gradlew build      # Build the library
+./gradlew test       # Run all tests
+./gradlew test --tests "ActionEventDispatcherTest.testDispatch"  # Run single test
+./gradlew publish    # Publish to Nexus repository
+```
+
+## Architecture
+
+This is a Spring Boot library providing an event dispatching framework based on the Event Dispatcher pattern.
+
+### Core Components
+
+- **ActionEvent<K, T>** - Generic event model with ID (K), action string for routing, and payload (T)
+- **ActionEventHandler<K, T, E>** - Interface for event handlers; implement `supports(action)` and `handle(event)`
+- **ActionEventDispatcher** - Spring component that routes events to the first matching handler
+
+### Event Flow
+
+1. Create `ActionEvent` with action string and payload
+2. Call `ActionEventDispatcher.dispatch(event)`
+3. Dispatcher finds first handler where `supports(action)` returns true
+4. Handler's `handle(event)` processes the event
+
+### Tech Stack
+
+- Java 25
+- Spring Boot 3.5.3
+- Lombok
+- Gradle 9.1.0
