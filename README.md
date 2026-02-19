@@ -1,17 +1,36 @@
-# Building and Publishing
+# event-dispatcher
 
-To build the library:
-```bash
-./gradlew build
+A lightweight Java library for dispatching action-based events to handlers. No Spring dependency at runtime.
+
+## Usage
+
+Define a handler:
+
+```java
+public class OrderHandler implements ActionEventHandler<OrderDto> {
+    @Override
+    public Set<String> supportedActions() {
+        return Set.of("order.created", "order.updated");
+    }
+
+    @Override
+    public void handle(ActionEvent<OrderDto> event) {
+        // process event
+    }
+}
 ```
 
-To test the library:
-```bash
-./gradlew test
+Create and use the dispatcher:
+
+```java
+var dispatcher = new ActionEventDispatcher(List.of(new OrderHandler()));
+dispatcher.dispatch(new ActionEvent<>(UUID.randomUUID(), "order.created", orderDto));
 ```
 
-To publish the artifact to the repository:
-```bash
-./gradlew publish
-```
+## Build
 
+```bash
+./gradlew build      # Build the library
+./gradlew test       # Run all tests
+./gradlew publish    # Publish to Nexus repository
+```
