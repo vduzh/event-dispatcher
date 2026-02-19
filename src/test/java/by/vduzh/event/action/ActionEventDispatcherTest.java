@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Set;
 import java.util.UUID;
 
 import static org.mockito.Mockito.*;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.*;
 public class ActionEventDispatcherTest {
 
     @MockitoBean
-    private ActionEventHandler<UUID, String, ActionEvent<UUID, String>> handler;
+    private ActionEventHandler<String> handler;
 
     @Autowired
     private ActionEventDispatcher dispatcher;
@@ -26,9 +27,9 @@ public class ActionEventDispatcherTest {
     void shouldHandleActionEvent() {
         // Given - mock event
         var event = mock(ActionEvent.class);
-        doReturn("foo.action").when(event).getAction();
+        doReturn("foo.action").when(event).action();
 
-        doReturn(true).when(handler).supports("foo.action");
+        //doReturn(true).when(handler).supportedActions(an);
         doNothing().when(handler).handle(any());
 
         // When

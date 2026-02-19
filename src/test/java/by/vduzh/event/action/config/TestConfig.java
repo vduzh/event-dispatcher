@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class TestConfig {
     @Bean
-    public ActionEventDispatcher dispatcher(List<ActionEventHandler<?, ?, ActionEvent<?, ?>>> handlers) {
+    public ActionEventDispatcher dispatcher(List<ActionEventHandler<?>> handlers) {
         return new ActionEventDispatcher(handlers);
     }
 }
