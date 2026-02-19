@@ -1,15 +1,14 @@
 package by.vduzh.event.dispatcher;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@Slf4j
 public class ActionEventDispatcher {
+    private static final Logger log = LoggerFactory.getLogger(ActionEventDispatcher.class);
     private final Map<String, ActionEventHandler<?>> handlerMap;
 
     public ActionEventDispatcher(List<? extends ActionEventHandler<?>> handlers) {

@@ -1,9 +1,13 @@
-# gradle/libs.versions.toml
 [versions]
-springBoot = "3.5.3"
-springDependencyManagement = "1.1.7"
+slf4j = "2.0.17"
+junit = "5.12.2"
+mockito = "5.17.0"
+byte-buddy = "1.17.6"
 
-
-[plugins]
-springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
-springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+[libraries]
+slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+byte-buddy = { group = "net.bytebuddy", name = "byte-buddy", version.ref = "byte-buddy" }
+byte-buddy-agent = { group = "net.bytebuddy", name = "byte-buddy-agent", version.ref = "byte-buddy" }
