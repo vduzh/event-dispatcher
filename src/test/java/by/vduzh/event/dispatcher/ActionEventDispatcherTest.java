@@ -1,6 +1,6 @@
-package by.vduzh.event.action;
+package by.vduzh.event.dispatcher;
 
-import by.vduzh.event.action.config.TestConfig;
+import by.vduzh.event.dispatcher.config.TestConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,6 @@ public class ActionEventDispatcherTest {
         var event = mock(ActionEvent.class);
         doReturn("foo.action").when(event).action();
 
-        //doReturn(true).when(handler).supportedActions(an);
         doNothing().when(handler).handle(any());
 
         // When

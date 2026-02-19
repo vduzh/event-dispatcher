@@ -1,4 +1,4 @@
-package by.vduzh.event.action;
+package by.vduzh.event.dispatcher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

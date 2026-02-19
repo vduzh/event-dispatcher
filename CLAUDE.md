@@ -17,19 +17,19 @@ Hardcoded Nexus credentials in `build.gradle` are intentional — used only for 
 
 ## Architecture
 
-This is a Spring Boot library providing an event dispatching framework based on the Event Dispatcher pattern.
+This is a Spring Boot library providing an event dispatching framework based on the Event Dispatcher pattern (similar to DispatcherServlet routing).
 
 ### Core Components
 
-- **ActionEvent<K, T>** - Generic event model with ID (K), action string for routing, and payload (T)
-- **ActionEventHandler<K, T, E>** - Interface for event handlers; implement `supports(action)` and `handle(event)`
-- **ActionEventDispatcher** - Spring component that routes events to the first matching handler
+- **ActionEvent\<T>** - Immutable event record with UUID id, action string for routing, and payload (T)
+- **ActionEventHandler\<T>** - Interface for event handlers; declare `supportedActions()` and implement `handle(event)`
+- **ActionEventDispatcher** - Spring component that routes events to the matching handler (one handler per action, validated at startup)
 
 ### Event Flow
 
 1. Create `ActionEvent` with action string and payload
 2. Call `ActionEventDispatcher.dispatch(event)`
-3. Dispatcher finds first handler where `supports(action)` returns true
+3. Dispatcher looks up handler by action (O(1) map lookup)
 4. Handler's `handle(event)` processes the event
 
 ### Tech Stack

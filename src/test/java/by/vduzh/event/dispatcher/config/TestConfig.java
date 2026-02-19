@@ -1,8 +1,7 @@
-package by.vduzh.event.action.config;
+package by.vduzh.event.dispatcher.config;
 
-import by.vduzh.event.action.ActionEvent;
-import by.vduzh.event.action.ActionEventDispatcher;
-import by.vduzh.event.action.ActionEventHandler;
+import by.vduzh.event.dispatcher.ActionEventDispatcher;
+import by.vduzh.event.dispatcher.ActionEventHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
