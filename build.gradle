@@ -48,7 +48,8 @@ publishing {
     repositories {
         maven {
             name = 'nexus'
-            url = "http://localhost:8081/repository/maven-snapshots/"
+            def path = version.toString().endsWith("SNAPSHOT") ? "maven-snapshots" : "maven-releases"
+            url = "http://localhost:8081/repository/" + path
             allowInsecureProtocol = true
             credentials {
                 username = 'admin'
