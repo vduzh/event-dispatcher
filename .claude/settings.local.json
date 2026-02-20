@@ -5,7 +5,9 @@
       "Bash(./gradlew build:*)",
       "Bash(./gradlew dependencies:*)",
       "Bash(./gradlew test:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(java -version:*)",
+      "Bash(echo:*)"
     ]
   }
 }
