@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "by.vduzh.event.dispatcher"
-version = "1.0.1"
+version = "1.0.2"
 
 java {
     toolchain {
@@ -29,6 +29,10 @@ dependencies {
 
 testing.suites.named<JvmTestSuite>("test") {
     useJUnitJupiter()
+}
+
+tasks.withType<PublishToMavenRepository>().configureEach {
+    dependsOn(tasks.named("check"))
 }
 
 publishing {
